@@ -20,9 +20,12 @@ export const getAllRecipes = async (req, res) => {
 
     const page = parseInt(req.query.page);
     const limit = parseInt(req.query.limit);
+    const { vegerarian, vegan, type } = req.query;
 
     try {
-        const recipes = await Recipe.find({}).sort({ createdAt: -1 }).skip(page * limit).limit(limit ? limit : 50);
+        const recipes = await Recipe.find({ $and: [vegerarian ? { vegerarian: vegerarian } : {}, vegan ? { vegan: vegan } : {}, type ? { type: type } : {}] })
+            .sort({ createdAt: -1 })
+            .skip(page * limit).limit(limit ? limit : 50);
         res.status(200).json({ success: true, recipesCount: recipes.length, message: "Successful", data: recipes });
     } catch (err) {
         res.status(404).json({ success: false, message: "Not found" });
