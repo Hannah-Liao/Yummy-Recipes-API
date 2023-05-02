@@ -2,7 +2,7 @@ import mongoose from 'mongoose';
 const { Schema } = mongoose;
 
 const recipeSchema = new Schema({
-    name: { type: String, required: true },
+    name: { type: String, required: true, unique: true },
     ingredients: [{ type: String, required: true }],
     instructions: [{ type: String, required: true }],
     imageUrl: { type: String, required: true },
@@ -10,6 +10,7 @@ const recipeSchema = new Schema({
     vegerarian: { type: String, required: true },
     vegan: { type: String, required: true },
     type: { type: String, required: true },
+    serves: { type: Number },
     source: { type: String },
 });
 
