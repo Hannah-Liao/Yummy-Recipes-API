@@ -7,7 +7,7 @@ const recipeSchema = new Schema({
     instructions: [{ type: String, required: true }],
     imageUrl: { type: String, required: true },
     cookingTime: { type: Number, required: true },
-    vegerarian: { type: String, required: true },
+    vegetarian: { type: String, required: true },
     vegan: { type: String, required: true },
     type: { type: String, required: true },
     serves: { type: Number },
